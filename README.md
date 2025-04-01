@@ -12,6 +12,11 @@ This is a blog API project built with NestJS.
 
 - [Register](#register)
 - [Login](#login)
+- [Create Category](#create-category)
+- [Get Category](#get-category)
+- [Update Category](#update-category)
+- [Delete Category](#delete-category)
+- [Get Many Categories](#get-many-categories)
 
 ## Register
 
@@ -39,6 +44,8 @@ Response:
 }
 ```
 
+[Back to Features](#features)
+
 ## Login
 
 **Method POST**
@@ -65,6 +72,144 @@ Response:
   }
 }
 ```
+
+[Back to Features](#features)
+
+## Create Category
+
+**Method POST**
+**Endpoint: /api/category**
+
+Request Body:
+
+```json
+{
+  "name": "project",
+  "slug": "project"
+}
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "message": "category project successfully created",
+  "data": {
+    "name": "project",
+    "slug": "project"
+  }
+}
+```
+
+[Back to Features](#features)
+
+## Get Category
+
+**Method GET**
+**Endpoint: /api/category/[categoryId]**
+
+Response:
+
+```json
+{
+  "success": true,
+  "message": "get category success",
+  "data": {
+    "id": "7afbd062-df72-42ec-b0cd-396f8b857065",
+    "name": "tutorial",
+    "slug": "tutorial",
+    "created_at": "2025-04-01T17:16:35.806Z",
+    "updated_at": null
+  }
+}
+```
+
+[Back to Features](#features)
+
+## Update Category
+
+**Method PUT**
+**Endpoint: /api/category/[categoryId]**
+
+Request Body:
+
+```json
+{
+  "name": "project",
+  "slug": "project"
+}
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "message": "update category success",
+  "data": {
+    "name": "project",
+    "slug": "project"
+  }
+}
+```
+
+[Back to Features](#features)
+
+## Delete Category
+
+**Method DELETE**
+**Endpoint: /api/category/[categoryId]**
+
+Response:
+
+```json
+{
+  "success": true,
+  "message": "delete category succes",
+  "data": {
+    "id": "7afbd062-df72-42ec-b0cd-396f8b857065",
+    "name": "tutorial",
+    "slug": "tutorial",
+    "created_at": "2025-04-01T17:16:35.806Z",
+    "updated_at": null
+  }
+}
+```
+
+[Back to Features](#features)
+
+## Get Many Categories
+
+**Method GET**
+**Endpoint: /api/category**
+
+Response:
+
+```json
+{
+  "success": true,
+  "message": "get categories success",
+  "data": [
+    {
+      "id": "7afbd062-df72-42ec-b0cd-396f8b857065",
+      "name": "tutorial",
+      "slug": "tutorial",
+      "created_at": "2025-04-01T17:16:35.806Z",
+      "updated_at": null
+    },
+    {
+      "id": "7b0ee3ae-f87f-46b5-8c3f-763f0bbb560f",
+      "name": "project",
+      "slug": "project",
+      "created_at": "2025-04-01T17:16:47.797Z",
+      "updated_at": null
+    }
+  ]
+}
+```
+
+[Back to Features](#features)
 
 ## Project setup
 
