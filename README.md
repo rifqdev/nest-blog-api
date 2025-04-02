@@ -10,13 +10,26 @@ This is a blog API project built with NestJS.
 
 ## Features
 
+**Auth**
+
 - [Register](#register)
 - [Login](#login)
+
+**Category**
+
 - [Create Category](#create-category)
 - [Get Category](#get-category)
 - [Update Category](#update-category)
 - [Delete Category](#delete-category)
 - [Get Many Categories](#get-many-categories)
+
+**Tags**
+
+- [Create Tag](#create-tag)
+- [Get Tag](#get-tag)
+- [Update Tag](#update-tag)
+- [Delete Tag](#delete-tag)
+- [Get Many Tags](#get-many-tags)
 
 ## Register
 
@@ -203,6 +216,137 @@ Response:
       "name": "project",
       "slug": "project",
       "created_at": "2025-04-01T17:16:47.797Z",
+      "updated_at": null
+    }
+  ]
+}
+```
+
+[Back to Features](#features)
+
+## Create Tag
+
+**Method POST**
+**Endpoint: /api/tags**
+
+Request Body:
+
+```json
+{
+  "name": "css"
+}
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "message": "tag css successfully created",
+  "data": {
+    "name": "css"
+  }
+}
+```
+
+[Back to Features](#features)
+
+## Get Tag
+
+**Method GET**
+**Endpoint: /api/tags/[tagId]**
+
+Response:
+
+```json
+{
+  "success": true,
+  "message": "get tag success",
+  "data": {
+    "id": "64b2dab5-1b47-4312-8ed2-fd5e805d2071",
+    "name": "html",
+    "created_at": "2025-04-01T23:36:55.370Z",
+    "updated_at": null
+  }
+}
+```
+
+[Back to Features](#features)
+
+## Update Tag
+
+**Method PUT**
+**Endpoint: /api/tags/[tagId]**
+
+Request Body:
+
+```json
+{
+  "name": "html5"
+}
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "message": "tag html updated to html5",
+  "data": {
+    "id": "64b2dab5-1b47-4312-8ed2-fd5e805d2071",
+    "name": "html5",
+    "created_at": "2025-04-01T23:36:55.370Z",
+    "updated_at": "2025-04-01T23:46:57.069Z"
+  }
+}
+```
+
+[Back to Features](#features)
+
+## Delete Tag
+
+**Method DELETE**
+**Endpoint: /api/tags/[tagId]**
+
+Response:
+
+```json
+{
+  "success": true,
+  "message": "tag html has been deleted",
+  "data": {
+    "id": "61abc1a0-49f2-4403-ae78-7d2baece4aef",
+    "name": "html",
+    "created_at": "2025-04-01T23:53:46.898Z",
+    "updated_at": null
+  }
+}
+```
+
+[Back to Features](#features)
+
+## Get Many Tags
+
+**Method GET**
+**Endpoint: /api/tags**
+
+Response:
+
+```json
+{
+  "success": true,
+  "message": "get tags success",
+  "data": [
+    {
+      "id": "61abc1a0-49f2-4403-ae78-7d2baece4aef",
+      "name": "html",
+      "created_at": "2025-04-01T23:53:46.898Z",
+      "updated_at": null
+    },
+    {
+      "id": "7dacc0e9-b67a-45c0-bd70-12fcc9676519",
+      "name": "css",
+      "created_at": "2025-04-01T23:53:51.590Z",
       "updated_at": null
     }
   ]
