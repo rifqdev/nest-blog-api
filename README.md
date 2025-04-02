@@ -8,6 +8,12 @@
 
 This is a blog API project built with NestJS.
 
+## Table of Content
+
+- [Features](#features)
+- [Project setup](#project-setup)
+- [Compile and run the project](#compile-and-run-the-project)
+
 ## Features
 
 **Auth**
