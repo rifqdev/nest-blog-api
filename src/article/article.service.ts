@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ArticleDto } from './dto/article.dto';
+import { ResponseHelper } from 'src/utils/response';
 
 @Injectable()
 export class ArticleService {
@@ -17,10 +18,10 @@ export class ArticleService {
     if (!article)
       throw new HttpException('failed create article', HttpStatus.BAD_REQUEST);
 
-    return {
-      message: `Article ${article.title} created successfully`,
-      data: article,
-    };
+    return ResponseHelper.success(
+      `Article ${article.title} created successfully`,
+      article,
+    );
   }
 
   async getArticle(articleId: string) {
@@ -31,10 +32,10 @@ export class ArticleService {
     if (!article)
       throw new HttpException('Article not found', HttpStatus.NOT_FOUND);
 
-    return {
-      message: `Article ${article.title} found successfully`,
-      data: article,
-    };
+    return ResponseHelper.success(
+      `Article ${article.title} found successfully`,
+      article,
+    );
   }
 
   async updateArticle(articleId: string, data: ArticleDto) {
@@ -57,10 +58,10 @@ export class ArticleService {
     if (!updateData)
       throw new HttpException('failed update article', HttpStatus.BAD_REQUEST);
 
-    return {
-      message: `Article ${updateData.title} updated successfully`,
-      data: updateData,
-    };
+    return ResponseHelper.success(
+      `Article ${updateData.title} updated successfully`,
+      updateData,
+    );
   }
 
   async deleteArticle(articleId: string) {
@@ -78,18 +79,42 @@ export class ArticleService {
     if (!deleteData)
       throw new HttpException('failed delete article', HttpStatus.BAD_REQUEST);
 
-    return {
-      message: `Article ${deleteData.title} deleted successfully`,
-      data: deleteData,
-    };
+    return ResponseHelper.success(
+      `Article ${deleteData.title} deleted successfully`,
+      deleteData,
+    );
   }
 
-  async getArticles() {
-    const articles = await this.prisma.article.findMany();
+  async getArticles(search: string, page: number, limit: number) {
+    const skip = (page - 1) * limit;
 
-    return {
-      message: 'Fetch articles successfully',
-      data: articles,
+    let condition = {
+      where: {},
+      skip,
+      take: limit,
     };
+
+    if (search) {
+      condition = {
+        ...condition,
+        where: {
+          title: {
+            contains: search,
+          },
+        },
+      };
+    }
+
+    const articles = await this.prisma.article.findMany(condition);
+
+    const totalArticles = await this.prisma.article.count(condition);
+
+    return ResponseHelper.paginate(
+      'Fetch many articles successfully',
+      page,
+      limit,
+      totalArticles,
+      articles,
+    );
   }
 }

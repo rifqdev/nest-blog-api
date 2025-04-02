@@ -9,6 +9,7 @@ import {
   Param,
   Put,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -47,7 +48,11 @@ export class ArticleController {
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  async getArticles() {
-    return this.articleService.getArticles();
+  async getArticles(
+    @Query('page', ParseIntPipe) page: number = 1,
+    @Query('limit', ParseIntPipe) limit: number = 10,
+    @Query('search') search: string = '',
+  ) {
+    return this.articleService.getArticles(search, page, limit);
   }
 }
