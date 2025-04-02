@@ -562,6 +562,9 @@ DATABASE_URL="mysql://username:password@localhost:3306/db_name"
 
 #install dependencies
 $ npm install
+
+# running database migration
+$ npx prisma migrate dev
 ```
 
 ## Compile and run the project
