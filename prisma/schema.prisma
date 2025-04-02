@@ -50,5 +50,6 @@ model Article {
   category Category @relation(fields: [category_id], references: [id])
   tags_id String
   tags Tags @relation(fields: [tags_id], references: [id])
+  updated_at DateTime?
 }
 
